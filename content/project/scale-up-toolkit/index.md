@@ -7,8 +7,8 @@ summary: "When we know that a behaviour change intervention has worked in a
 
   I led this work at BehaviourWorks in collaboration with the Victorian
   government Behavioural Insights Unit to develop an evidence-informed toolkit
-  to help behavioural insights researchers and practitioners to start with scale
-  up in mind, including how to:\r\ 
+  to help behavioural insights researchers and practitioners improve the scale
+  up of their behaviour change interventions.
 
 
   \r
