@@ -21,11 +21,6 @@ social:
   - icon: cv
     icon_pack: ai
     link: https://docs.google.com/document/d/1h9amaSB6MOZ1lSANBEhf1SOaMfQg4Y2_12wK3l-CrT4/edit
-  - display:
-      header: false
-    icon_pack: far
-    icon: envelope
-    link: mailto:aksaeri.com
 organizations:
   - name: Ready Research
     url: https://www.readyresearch.org
