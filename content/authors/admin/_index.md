@@ -39,9 +39,9 @@ education:
 superuser: true
 status:
   icon: ☕️
-last_name: Wu
+last_name: Saeri
 highlight_name: true
-first_name: Alice
+first_name: Alexander
 email: ""
 ---
 Alexander uses a mix of applied behaviour science and social science methods to understand and address complex challenges, including climate change, pandemics, and advanced artificial intelligence.
