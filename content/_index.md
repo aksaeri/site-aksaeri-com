@@ -8,13 +8,13 @@ sections:
   - block: about.biography
     id: about
     content:
-      title: Biography
+      title: 
       # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
   - block: portfolio
     id: projects
     content:
-      title: Projects
+      title: Work
       filters:
         folders:
           - project
@@ -40,7 +40,7 @@ sections:
       flip_alt_rows: false
   - block: collection
     content:
-      title: Research
+      title: Writing and Talks
       text: 
       filters:
         folders:
