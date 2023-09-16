@@ -6,7 +6,8 @@ bio: ""
 interests:
   - AI policy and governance
   - Behaviour science
-  - Scale up
+  - Implementation science
+  - Scale up of effective interventions
 social:
   - icon: envelope
     icon_pack: fas
