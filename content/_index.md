@@ -26,12 +26,12 @@ sections:
       # To filter by a specific tag, set `tag` to an existing tag name.
       # To remove the toolbar, delete the entire `filter_button` block.
       # buttons:
-        - name: All
-          tag: '*'
-        - name: Deep Learning
-          tag: Deep Learning
-        - name: Other
-          tag: Demo
+      #  - name: All
+      #    tag: '*'
+      #  - name: Deep Learning
+      #    tag: Deep Learning
+      #  - name: Other
+      #    tag: Demo
     design:
       # Choose how many columns the section has. Valid values: '1' or '2'.
       columns: '1'
@@ -41,7 +41,7 @@ sections:
   - block: collection
     content:
       title: Research
-      text: |-
+      text: 
       filters:
         folders:
           - publication
@@ -57,7 +57,7 @@ sections:
       text: 
       # Contact (add or remove contact options as necessary)
       email: alexander@aksaeri.com
-      phone:+61 405 519 733
+      phone: +61 405 519 733
       appointment_url: https://calendar.app.google/sv3Sb5sjUxxTdssv8
       # Automatically link email and phone or display as text?
       autolink: true
