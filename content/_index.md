@@ -1,7 +1,7 @@
 ---
 # Leave the homepage title empty to use the site title
 title:
-date: 2022-10-24
+date: 2023-09-01
 type: landing
 
 sections:
@@ -14,7 +14,7 @@ sections:
   - block: portfolio
     id: projects
     content:
-      title: Work
+      title: Projects
       filters:
         folders:
           - project
