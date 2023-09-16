@@ -1,14 +1,19 @@
 ---
 title: External Project
-summary: An example of linking directly to an external project website using `external_link`.
+date: 2023-09-16T05:52:58.330Z
+summary: >-
+  The BehaviourWorks Australia Climate Adaptation Mission explores how systems
+  thinking, knowledge co-production, and behavioural public policy experiments
+  could help Australian communities reduce harms from climate change. 
+
+
+  I﻿ co-led this project with collaborators Stefan Kaufman and Kien Nguyen.
 tags:
   - Demo
-date: "2016-04-27T00:00:00Z"
-
-# Optional external URL for project (replaces project detail page).
-external_link: https://example.org
-
+external_link: https://www.behaviourworksaustralia.org/major-projects/climate-adaptation-mission
 image:
-  caption: Photo by Toa Heftiba on Unsplash
+  caption: Photo by Nerissa J on Unsplash
   focal_point: Smart
+  filename: nerissa-j-tgbdyxvidac-unsplash.jpg
 ---
+The Climate Adaptation Mission explores how systems thinking, knowledge co-production, and behavioural public policy experiments could help Australian communities reduce harms from climate change.
