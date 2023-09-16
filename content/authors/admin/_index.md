@@ -2,6 +2,7 @@
 title: Alexander Saeri
 role: Behaviour Science Expert | AI Policy & Governance | Public Health
   Behaviour | Social Psychology | Scale up & Implementation
+avatar_filename: zan-saeri_square.jpg
 bio: ""
 interests:
   - AI policy and governance
