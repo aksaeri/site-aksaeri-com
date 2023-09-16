@@ -15,7 +15,8 @@ categories:
   - evidence
 external_link: https://www.behaviourworksaustralia.org/major-projects/covid-19-scrub-study
 image:
-  filename: featured
+  filename: sean-horsburgh-cxyq5_64lam-unsplash.jpg
   focal_point: Smart
   preview_only: false
+  caption: Photo by Sean Horsburgh on Unsplash
 ---
