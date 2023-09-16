@@ -58,7 +58,7 @@ sections:
       # Contact (add or remove contact options as necessary)
       email: alexander@aksaeri.com
       phone: +61 405 519 733
-      appointment_url: https://calendar.app.google/sv3Sb5sjUxxTdssv8
+      appointment_url: 'https://calendar.app.google/sv3Sb5sjUxxTdssv8'
       # Automatically link email and phone or display as text?
       autolink: true
       design:
