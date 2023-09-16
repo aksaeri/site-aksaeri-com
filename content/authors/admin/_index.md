@@ -1,13 +1,14 @@
 ---
 title: Alexander Saeri
-role: Behaviour Science Expert | AI Policy & Governance
+role: ""
 avatar_filename: avatar.jpg
 bio: ""
 interests:
   - AI policy and governance
   - Behaviour science
   - Implementation science
-  - Scale up of effective interventions
+  - Scale up
+  - Effective altruism
 social:
   - icon: envelope
     icon_pack: fas
