@@ -25,7 +25,7 @@ sections:
       # To show all items, set `tag` to "*".
       # To filter by a specific tag, set `tag` to an existing tag name.
       # To remove the toolbar, delete the entire `filter_button` block.
-      buttons:
+      # buttons:
         - name: All
           tag: '*'
         - name: Deep Learning
@@ -42,9 +42,6 @@ sections:
     content:
       title: Research
       text: |-
-        {{% callout note %}}
-        Quickly discover relevant content by [filtering publications](./publication/).
-        {{% /callout %}}
       filters:
         folders:
           - publication
@@ -52,7 +49,7 @@ sections:
     design:
       columns: '2'
       view: citation
-  - block: collection
+#  - block: collection
     id: talks
     content:
       title: Talks
@@ -67,24 +64,12 @@ sections:
     content:
       title: Contact
       subtitle:
-      text: |-
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi diam, venenatis ut magna et, vehicula efficitur enim.
+      text: 
       # Contact (add or remove contact options as necessary)
-      email: test@example.org
-      phone: 888 888 88 88
-      appointment_url: 'https://calendly.com'
-      address:
-        street: 450 Serra Mall
-        city: Stanford
-        region: CA
-        postcode: '94305'
-        country: United States
-        country_code: US
-      directions: Enter Building 1 and take the stairs to Office 200 on Floor 2
-      office_hours:
-        - 'Monday 10:00 to 13:00'
-        - 'Wednesday 09:00 to 10:00'
-      contact_links:
+      email: alexander@aksaeri.com
+      phone:+61 405 519 733
+      appointment_url: https://calendar.app.google/sv3Sb5sjUxxTdssv8
+      # contact_links:
         - icon: twitter
           icon_pack: fab
           name: DM Me
