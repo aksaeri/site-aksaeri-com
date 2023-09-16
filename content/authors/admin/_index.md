@@ -40,6 +40,6 @@ highlight_name: true
 first_name: Alexander
 email: ""
 ---
-Alexander uses a mix of applied behaviour science and social science methods to understand and address complex challenges, including climate change, pandemics, and advanced artificial intelligence.
+I use applied behaviour science and social science methods to understand and address complex challenges, including climate change, pandemics, and advanced artificial intelligence.
 
-He is especially interested in how to improve decision-making and behaviour about the development, deployment and use of artificial intelligence to address catastrophic risks and safely transition to futures where advanced AI is widely used.
+I am especially interested in how to improve decision-making and behaviour about the development, deployment and use of artificial intelligence to address catastrophic risks and safely transition to futures where advanced AI is widely used.
