@@ -38,17 +38,17 @@ sections:
       view: showcase
       # For Showcase view, flip alternate rows?
       flip_alt_rows: false
-  - block: collection
-    content:
-      title: Writing and Talks
-      text: 
-      filters:
-        folders:
-          - publication
-        exclude_featured: true
-    design:
-      columns: '2'
-      view: citation
+  # - block: collection
+  #  content:
+  #    title: Writing and Talks
+  #    text: 
+  #    filters:
+  #      folders:
+  #        - publication
+  #      exclude_featured: true
+  #  design:
+  #    columns: '2'
+  #    view: citation
   - block: contact
     id: contact
     content:
