@@ -19,3 +19,30 @@
   package = "netlify-plugin-hugo-cache-resources"
   [plugins.inputs]
     debug = true
+
+[[redirects]]
+  from = "/meet"
+  to = "https://calendar.app.google/sv3Sb5sjUxxTdssv8"
+  status = 301
+  force = true  # Ensures the redirect always happens, even if there is content in the path
+
+[[redirects]]
+  from = "/opportunities"
+  to = "https://docs.google.com/document/d/1TRfgYpy8dOTXU_KJpqq1ZkBIUKqpyOaW6vBqufpRqGw/edit"
+  status = 301
+  force = true  # Ensures the redirect always happens, even if there is content in the path
+
+  [[redirects]]
+  from = "/eoi"
+  to = "https://forms.gle/6BEMc3DYuU52yfGn8"
+  status = 301
+  force = true  # Ensures the redirect always happens, even if there is content in the path
+
+
+  [[redirects]]
+  from = "/cv"
+  to = "https://docs.google.com/document/d/1h9amaSB6MOZ1lSANBEhf1SOaMfQg4Y2_12wK3l-CrT4/edit"
+  status = 301
+  force = true  # Ensures the redirect always happens, even if there is content in the path
+
+  
