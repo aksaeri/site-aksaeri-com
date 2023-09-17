@@ -5,6 +5,26 @@ date: 2023-09-01
 type: landing
 
 sections:
+  - block: hero
+    content:
+      title: |-
+        AI Safety Unconference & EAGxAustralia 2023
+      image:
+        filename: eagx_aus_logo.jpg
+      text: |-
+        <br>
+
+        I'll be at the AI Safety Unconference and then EAGxAustralia from 22-24 September 2023. Please reach out via Swapcard if you're attending - I'm keen to connect and talk AI safety, policy & governance.
+
+        <br>
+      cta:
+        label: Get involved
+        url: 'https://forms.gle/6BEMc3DYuU52yfGn8'
+        icon_pack: fas
+        icon: star
+     cta_alt:
+        label: AI governance opportunities in Australia
+        url: 'https://docs.google.com/document/d/1TRfgYpy8dOTXU_KJpqq1ZkBIUKqpyOaW6vBqufpRqGw/edit'
   - block: about.biography
     id: about
     content:
