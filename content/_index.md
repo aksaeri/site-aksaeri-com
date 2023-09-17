@@ -22,7 +22,7 @@ sections:
         url: 'https://forms.gle/6BEMc3DYuU52yfGn8'
         icon_pack: fas
         icon: star
-     cta_alt:
+      cta_alt:
         label: AI governance opportunities in Australia
         url: 'https://docs.google.com/document/d/1TRfgYpy8dOTXU_KJpqq1ZkBIUKqpyOaW6vBqufpRqGw/edit'
   - block: about.biography
