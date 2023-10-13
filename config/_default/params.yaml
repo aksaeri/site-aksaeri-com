@@ -8,8 +8,8 @@
 appearance:
   theme_day: earth
   theme_night: minimal
-  font: minimal
-  font_size: L
+  font: olive
+  font_size: m
 
 # SEO
 
