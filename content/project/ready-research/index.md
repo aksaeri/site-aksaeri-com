@@ -1,9 +1,9 @@
 ---
 title: Ready Research
 date: 2023-09-16T07:09:41.382Z
-summary: >-
-  Ready Research is a collaboration I co-founded in 2019 with Peter Slattery and Michael Noetel, aligned with
-  the principles of effective altruism. It provides research, training, and
+summary: |-
+  I co-founded Ready Research in 2019.  In this collaboration with [Peter Slattery](https://www.pslattery.com/), [Michael Noetel](https://noetel.com.au/), and [Emily Grundy](https://www.linkedin.com/in/emily-grundy/), we do work aligned with
+  the principles of effective altruism. We do research, training, and
   communication services to help address the world's most pressing problems. 
   
   Read more at [readyresearch.org](https://www.readyresearch.org)
