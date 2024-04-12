@@ -1,6 +1,6 @@
 ---
 title: Safe and Responsible AI in Australia
-date: 2023-09-16T07:22:40.380Z
+date: 2023-09-18T07:22:40.380Z
 summary: |-
   Working with Good Ancestors Policy, I supported three streams of work  to respond to a consultation by the Australian government about safe and responsible AI. This work included:
   

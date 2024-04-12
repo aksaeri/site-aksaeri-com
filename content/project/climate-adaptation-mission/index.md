@@ -1,6 +1,6 @@
 ---
 title: Climate Adaptation Mission
-date: 2023-09-16T07:05:11.172Z
+date: 2023-09-15T07:05:11.172Z
 summary: |-
   The BehaviourWorks Australia Climate Adaptation Mission explored how
   systems thinking, knowledge co-production, and behavioural public policy

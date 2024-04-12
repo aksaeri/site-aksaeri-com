@@ -1,6 +1,6 @@
 ---
 title: Scale up toolkit
-date: 2023-09-16T05:58:52.754Z
+date: 2023-09-17T05:58:52.754Z
 summary: |-
   When we know that a behaviour change intervention has worked in a pilot or trial, how can we scale it up to achieve greater impact and reach?
 
