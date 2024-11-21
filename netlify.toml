@@ -38,7 +38,12 @@
   status = 301
   force = true  # Ensures the redirect always happens, even if there is content in the path
 
-
+  [[redirects]]
+  from = "/intro"
+  to = "https://docs.google.com/document/d/1UjL4NztBiiTYw7p-HZrefE2XocCSKZ77WEOQ-P3LoH0/copy"
+  status = 301
+  force = true  # Ensures the redirect always happens, even if there is content in the path
+  
   [[redirects]]
   from = "/cv"
   to = "https://docs.google.com/document/d/1h9amaSB6MOZ1lSANBEhf1SOaMfQg4Y2_12wK3l-CrT4/edit"
