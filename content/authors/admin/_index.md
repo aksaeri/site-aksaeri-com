@@ -1,45 +1,44 @@
 ---
-title: Alexander Saeri
+title: Alexander K. Saeri
 role: ""
 avatar_filename: avatar.jpg
-bio: ""
+bio: |
+  I'm a behavioural scientist focused on improving the governance of increasingly advanced AI. I lead the **AI Risk Index**, a multi-method program that assesses AI risks, identifies effective mitigations, and makes organisational responses transparent. I also help build Australia's AI safety ecosystem through policy collaborations, community convening in Melbourne, and national events.
 interests:
-  - AI policy and governance
-  - Behaviour science
-  - Implementation science
-  - Scale up
-  - Effective altruism
-social:
-  - icon: envelope
-    icon_pack: fas
-    link: /#contact
-  - icon: graduation-cap
-    icon_pack: fas
-    link: https://scholar.google.com.au/citations?user=B_bJG3kAAAAJ
-  - icon: linkedin
-    icon_pack: fab
-    link: https://www.linkedin.com/in/aksaeri
-  - icon: cv
-    icon_pack: ai
-    link: https://docs.google.com/document/d/1h9amaSB6MOZ1lSANBEhf1SOaMfQg4Y2_12wK3l-CrT4/edit
-organizations:
-  - name: Ready Research
-    url: https://www.readyresearch.org
-#  - name: BehaviourWorks Australia, Monash University
-#    url: https://www.behaviourworksaustralia.org/
+  - Advanced AI governance
+  - Risk & mitigation evidence synthesis
+  - Implementation & scale-up
+  - Behaviour & decision science
+  - Community building & convening
 education:
   courses:
-    - course: PhD in Social Psychology
+    - course: PhD (Social Psychology)
       institution: The University of Queensland
-      year: ""
+      year: 2015
+email: "alexander@aksaeri.com"
+# Optional links shown as icons under profile photo:
+social:
+  - icon: linkedin
+    icon_pack: fab
+    link: "https://www.linkedin.com/in/aksaeri"
+  - icon: globe
+    icon_pack: fas
+    link: "https://airisk.mit.edu"
+  - icon: database
+    icon_pack: fas
+    link: "https://airisk.mit.edu/ai-risk-repository"
+  - icon: calendar
+    icon_pack: fas
+    link: "https://calendar.app.google/sv3Sb5sjUxxTdssv8"
+organizations:
+  - name: MIT FutureTech
+    url: https://airisk.mit.edu
+  - name: The University of Queensland
+    url: https://www.uq.edu.au
 superuser: true
 status:
   icon: ☕️
 last_name: Saeri
 highlight_name: true
 first_name: Alexander
-email: ""
 ---
-I use applied behaviour science and social science methods to understand and address complex challenges, including climate change, pandemics, and advanced artificial intelligence.
-
-I am especially interested in how to improve decision-making and behaviour about the development, deployment and use of artificial intelligence to address catastrophic risks and safely transition to futures where advanced AI is widely used.

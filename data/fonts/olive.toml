@@ -2,10 +2,10 @@
 name = "olive"
 
 # Optional Google font URL
-google_fonts = "family=Roboto&family=Roboto+Condensed:wght@300"
+google_fonts = "family=Inter:wght@300;400;500;600;700"
 
 # Font families
-heading_font = "Roboto Condensed"
-body_font = "Roboto"
-nav_font = "Roboto"
-mono_font = "Roboto Mono"
+heading_font = "Inter"
+body_font = "Inter"
+nav_font = "Inter"
+mono_font = "Inter"
