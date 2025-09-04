@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Risk 3.1 - Exceedance Probability Curve</title>
+    <style>
+        body {
+            font-family: 'Figtree', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .chart-header {
+            margin-bottom: 30px;
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 8px 0;
+        }
+
+        .chart-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+
+        .risk-label {
+            background: #a31e38;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* The key fix - constrain the canvas container */
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .data-table {
+            width: 100%;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 8px;
+            background: #f8f8f8;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .data-table td {
+            padding: 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .severity-cell {
+            font-weight: 500;
+        }
+
+        .probability-cell {
+            font-weight: 700;
+            color: #a31e38;
+        }
+
+        .chart-note {
+            font-size: 11px;
+            color: #888;
+            margin-top: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <div class="chart-header">
+            <div class="risk-label">RISK 3.1</div>
+            <h1 class="chart-title">False or Misleading Information</h1>
+            <p class="chart-subtitle">Exceedance Probability Curve (2025-2030)</p>
+        </div>
+
+        <div class="chart-wrapper">
+            <canvas id="exceedanceChart"></canvas>
+        </div>
+
+        <div class="chart-footer">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Severity Level</th>
+                        <th>Probability of At Least This Level</th>
+                        <th>Interpretation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="severity-cell">Minor</td>
+                        <td class="probability-cell">85%</td>
+                        <td>Very likely to see at least minor harms</td>
+                    </tr>
+                    <tr>
+                        <td class="severity-cell">Limited</td>
+                        <td class="probability-cell">70%</td>
+                        <td>Likely to affect specific groups/sectors</td>
+                    </tr>
+                    <tr>
+                        <td class="severity-cell">Moderate</td>
+                        <td class="probability-cell">50%</td>
+                        <td>Even chance of broader societal impacts</td>
+                    </tr>
+                    <tr>
+                        <td class="severity-cell">Significant</td>
+                        <td class="probability-cell">30%</td>
+                        <td>Realistic possibility of severe impacts</td>
+                    </tr>
+                    <tr>
+                        <td class="severity-cell">Catastrophic</td>
+                        <td class="probability-cell">12%</td>
+                        <td>Non-negligible tail risk</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p class="chart-note">
+                * Probabilities represent expert consensus on aggregate harm likelihood assuming no additional mitigations beyond current safeguards.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('exceedanceChart').getContext('2d');
+        
+        // Data for the exceedance curve
+        const severityLevels = ['None', 'Minor', 'Limited', 'Moderate', 'Significant', 'Catastrophic'];
+        const probabilities = [100, 85, 70, 50, 30, 12];
+        
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: severityLevels,
+                datasets: [{
+                    label: 'Exceedance Probability',
+                    data: probabilities,
+                    borderColor: '#a31e38',
+                    backgroundColor: 'rgba(163, 30, 56, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    stepped: 'before',
+                    pointRadius: 5,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#a31e38',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 7,
+                    pointHoverBackgroundColor: '#a31e38',
+                    pointHoverBorderColor: '#fff',
+                    pointHoverBorderWidth: 2,
+                    tension: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: false
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(42, 42, 42, 0.95)',
+                        titleFont: {
+                            family: 'Figtree',
+                            size: 14,
+                            weight: '600'
+                        },
+                        bodyFont: {
+                            family: 'Figtree',
+                            size: 13
+                        },
+                        padding: 12,
+                        cornerRadius: 6,
+                        callbacks: {
+                            title: function(context) {
+                                return context[0].label + ' Severity';
+                            },
+                            label: function(context) {
+                                return 'Probability: ' + context.parsed.y + '%';
+                            },
+                            afterLabel: function(context) {
+                                const interpretations = {
+                                    'None': 'Baseline (100%)',
+                                    'Minor': 'Very likely occurrence',
+                                    'Limited': 'Probable impact',
+                                    'Moderate': 'Even odds',
+                                    'Significant': 'Realistic possibility',
+                                    'Catastrophic': 'Tail risk scenario'
+                                };
+                                return interpretations[context.label] || '';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Probability (%)',
+                            font: {
+                                family: 'Figtree',
+                                size: 14,
+                                weight: '600'
+                            },
+                            color: '#333'
+                        },
+                        ticks: {
+                            font: {
+                                family: 'Figtree',
+                                size: 11
+                            },
+                            color: '#666',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Severity Level →',
+                            font: {
+                                family: 'Figtree',
+                                size: 14,
+                                weight: '600'
+                            },
+                            color: '#333'
+                        },
+                        ticks: {
+                            font: {
+                                family: 'Figtree',
+                                size: 11,
+                                weight: '500'
+                            },
+                            color: '#666'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
