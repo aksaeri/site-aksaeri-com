@@ -31,6 +31,10 @@ Line chart showing probability trajectories across severity levels for all risks
 **Interactive Risk Assessment Data Collection Tool**
 Survey-style interface for experts to input probability assessments with real-time validation and interpretation.
 
+### [Example 6: Probability Allocation Survey](example6/)
+**AI Risk Assessment Survey - Probability Allocation Method**
+Alternative survey interface using probability allocation across severity levels with cumulative probability calculations and real-time validation.
+
 ## Design Principles
 
 - **Cumulative Probability Logic**: All visualizations respect that P(≥Severe) ≤ P(≥Moderate) ≤ P(≥Limited)
