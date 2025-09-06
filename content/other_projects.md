@@ -17,7 +17,7 @@ sections:
       text: |
         ### Survey Assessing Risks from AI (SARA)
         
-        ![SARA Survey](project/survey-assessing-risks-ai/featured.jpg)
+        ![SARA Survey](/project/survey-assessing-risks-ai/featured.jpg)
         
         With Michael Noetel at The University of Queensland, I conducted a representative survey of ~1,000 Australian adults in Feb 2024 to understand public perceptions of AI risks and support for AI governance actions in Australia. 
 
@@ -38,7 +38,7 @@ sections:
 
         ### Safe and Responsible AI Submission
         
-        ![Safe and Responsible AI](project/safe-and-responsible-ai-submission/image-asset.jpeg)
+        ![Safe and Responsible AI](/project/safe-and-responsible-ai-submission/image-asset.jpeg)
         
         Policy submission and analysis work supporting Australia's approach to AI governance and safety.
 
@@ -49,7 +49,7 @@ sections:
       text: |
         ### SCRUB COVID-19 Survey
         
-        ![SCRUB COVID-19](project/scrub-covid-19-survey/sean-horsburgh-cxyq5_64lam-unsplash.jpg)
+        ![SCRUB COVID-19](/project/scrub-covid-19-survey/sean-horsburgh-cxyq5_64lam-unsplash.jpg)
 
         The SCRUB COVID-19 survey aimed to provide current and future policy makers with actionable insights into public attitudes and behaviours relating to the COVID-19 pandemic. 
 
@@ -63,7 +63,7 @@ sections:
 
         ### Climate Adaptation Mission
         
-        ![Climate Adaptation](project/climate-adaptation-mission/featured.jpg)
+        ![Climate Adaptation](/project/climate-adaptation-mission/featured.jpg)
 
         The BehaviourWorks Australia Climate Adaptation Mission explored how systems thinking, knowledge co-production, and behavioural public policy experiments could help Australian communities reduce harms from climate change. I co-led this project with collaborators Stefan Kaufman and Kien Nguyen.
 
@@ -73,7 +73,7 @@ sections:
 
         ### Scale-up Toolkit
         
-        ![Scale-up Toolkit](project/scale-up-toolkit/dustin-humes-y-esivccgdq-unsplash.jpg)
+        ![Scale-up Toolkit](/project/scale-up-toolkit/dustin-humes-y-esivccgdq-unsplash.jpg)
 
         With Victoria's Behavioural Insights Unit; practical tools for scaling effective interventions. Part of the broader work at BehaviourWorks Australia on translating research into practice.
 
@@ -86,7 +86,7 @@ sections:
       text: |
         ### Ready Research
         
-        ![Ready Research](project/ready-research/639ffb756e97ee39686aa965_pxl_20220405_074705897.mp.jpg)
+        ![Ready Research](/project/ready-research/639ffb756e97ee39686aa965_pxl_20220405_074705897.mp.jpg)
 
         I co-founded Ready Research in 2019. In this collaboration with [Peter Slattery](https://www.pslattery.com/), [Michael Noetel](https://noetel.com.au/), and [Emily Grundy](https://www.linkedin.com/in/emily-grundy/), we do work aligned with the principles of effective altruism. We do research, training, and communication services to help address the world's most pressing problems. 
 
