@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Comparative Risk Ranking</title>
+    <style>
+        body {
+            font-family: 'Figtree', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .chart-header {
+            margin-bottom: 30px;
+        }
+
+        .chart-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 8px 0;
+        }
+
+        .chart-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin: 0 0 20px 0;
+        }
+
+        .threshold-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f8f8;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .threshold-dot {
+            width: 8px;
+            height: 8px;
+            background: #f4a582;
+            border-radius: 50%;
+        }
+
+        .ranking-chart {
+            margin: 30px 0;
+        }
+
+        .risk-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .risk-rank {
+            width: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            text-align: right;
+            margin-right: 15px;
+        }
+
+        .risk-label-container {
+            width: 280px;
+            margin-right: 20px;
+        }
+
+        .risk-code {
+            font-size: 11px;
+            font-weight: 700;
+            color: #a31e38;
+            margin-bottom: 2px;
+        }
+
+        .risk-name {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .risk-row.highlighted .risk-code {
+            color: #a31e38;
+        }
+
+        .risk-row.highlighted .risk-name {
+            font-weight: 600;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 32px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            position: relative;
+            border: 1px solid #e0e0e0;
+        }
+
+        .probability-bar {
+            height: 100%;
+            background: #666;
+            border-radius: 3px 0 0 3px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            position: relative;
+        }
+
+        .risk-row.highlighted .probability-bar {
+            background: #a31e38;
+            box-shadow: 0 2px 8px rgba(163, 30, 56, 0.3);
+        }
+
+        .probability-bar:hover {
+            filter: brightness(1.1);
+            transform: scaleX(1.02);
+            transform-origin: left;
+        }
+
+        .bar-value {
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .grid-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0 0 345px;
+            font-size: 11px;
+            color: #888;
+        }
+
+        .summary-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fef9f3;
+            border-radius: 6px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #a31e38;
+            margin: 0;
+        }
+
+        .summary-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .legend-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .divider-line {
+            position: absolute;
+            left: 345px;
+            right: 0;
+            height: 1px;
+            background: #d32f2f;
+            border-top: 2px dashed #d32f2f;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .divider-label {
+            position: absolute;
+            right: 10px;
+            top: -20px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 11px;
+            color: #d32f2f;
+            font-weight: 600;
+            border-radius: 3px;
+            border: 1px solid #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            .risk-label-container {
+                width: 200px;
+            }
+            
+            .summary-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <div class="chart-header">
+            <h1 class="chart-title">AI Risk Comparative Ranking</h1>
+            <p class="chart-subtitle">Probability of <strong>at least MODERATE</strong> aggregate harm (2025-2030)</p>
+            <div class="threshold-indicator">
+                <span class="threshold-dot"></span>
+                <span>Moderate = Substantial negative impacts with broader societal implications</span>
+            </div>
+        </div>
+
+        <div class="ranking-chart">
+            <!-- 50% threshold line -->
+            <div class="divider-line" style="left: calc(345px + 50%);">
+                <div class="divider-label">50% threshold</div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">1</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">4.2</div>
+                    <div class="risk-name">Cyberattacks, weapons, mass harm</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 65%;">
+                        <span class="bar-value">65%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">2</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">4.1</div>
+                    <div class="risk-name">Disinformation, surveillance at scale</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 58%;">
+                        <span class="bar-value">58%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">3</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">3.2</div>
+                    <div class="risk-name">Pollution of information ecosystem</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 55%;">
+                        <span class="bar-value">55%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row highlighted">
+                <div class="risk-rank">4</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">3.1</div>
+                    <div class="risk-name">False or misleading information</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 50%;">
+                        <span class="bar-value">50%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">5</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">4.3</div>
+                    <div class="risk-name">Fraud, scams, targeted manipulation</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 48%;">
+                        <span class="bar-value">48%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">6</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">1.1</div>
+                    <div class="risk-name">Unfair discrimination & misrepresentation</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 45%;">
+                        <span class="bar-value">45%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">7</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">2.2</div>
+                    <div class="risk-name">AI system security vulnerabilities</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 42%;">
+                        <span class="bar-value">42%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">8</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">2.1</div>
+                    <div class="risk-name">Compromise of privacy</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 38%;">
+                        <span class="bar-value">38%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">9</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">1.2</div>
+                    <div class="risk-name">Toxic content generation</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 35%;">
+                        <span class="bar-value">35%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-row">
+                <div class="risk-rank">10</div>
+                <div class="risk-label-container">
+                    <div class="risk-code">1.3</div>
+                    <div class="risk-name">Unequal performance across groups</div>
+                </div>
+                <div class="bar-container">
+                    <div class="grid-lines">
+                        <div class="grid-line" style="left: 20%;"></div>
+                        <div class="grid-line" style="left: 40%;"></div>
+                        <div class="grid-line" style="left: 60%;"></div>
+                        <div class="grid-line" style="left: 80%;"></div>
+                    </div>
+                    <div class="probability-bar" style="width: 30%;">
+                        <span class="bar-value">30%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scale-labels">
+            <span>0%</span>
+            <span>20%</span>
+            <span>40%</span>
+            <span>60%</span>
+            <span>80%</span>
+            <span>100%</span>
+        </div>
+
+        <div class="summary-section">
+            <div class="summary-item">
+                <p class="summary-value">4/10</p>
+                <p class="summary-label">Risks above 50% probability</p>
+            </div>
+            <div class="summary-item">
+                <p class="summary-value">47.3%</p>
+                <p class="summary-label">Average probability across all risks</p>
+            </div>
+            <div class="summary-item">
+                <p class="summary-value">#4</p>
+                <p class="summary-label">Rank of Risk 3.1</p>
+            </div>
+        </div>
+
+        <div class="legend-section">
+            <div class="legend-title">Interpretation Guide</div>
+            <p>This ranking shows the probability that each risk will result in <strong>at least moderate aggregate harm</strong> over the 2025-2030 period, assuming no additional mitigations beyond current safeguards. Moderate harm is defined as substantial negative impacts with broader societal implications.</p>
+            <p style="margin-top: 10px;"><strong>Risk 3.1 (highlighted)</strong> sits at the 50% threshold, indicating an even chance of reaching moderate or worse severity levels.</p>
+        </div>
+    </div>
+
+    <script>
+        // Animate bars on load
+        window.addEventListener('load', () => {
+            const bars = document.querySelectorAll('.probability-bar');
+            bars.forEach((bar, index) => {
+                const finalWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease-out';
+                    bar.style.width = finalWidth;
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

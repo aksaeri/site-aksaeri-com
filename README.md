@@ -1,6 +1,32 @@
-# Alexander Saeri's professional website
+# Alexander K. Saeri - Personal Website
 
-This website is based on the  Hugo **Academic Resumé Template** - see [Hugo Academic Theme](https://github.com/wowchemy/starter-hugo-academic).
+Built with [Astro](https://astro.build).
 
-Feel free to use it or contact me for more information: [mailto:alexander@aksaeri.com].
+## Development
 
+```bash
+npm install
+npm run dev
+```
+
+## Building
+
+```bash
+npm run build
+```
+
+## Deployment
+
+Deployed to Vercel. Push to the main branch to trigger automatic deployment.
+
+## Custom HTML/JS
+
+Place any custom HTML/JS files in the `public/` directory. They'll be served as-is at their corresponding paths.
+
+Example: `public/mockups/delphi/example1.html` → `aksaeri.com/mockups/delphi/example1.html`
+
+## URL Redirects
+
+Custom URL redirects are configured in `vercel.json`. Examples:
+- `/opportunities` → Google Docs link
+- `/meet` → Calendar booking link

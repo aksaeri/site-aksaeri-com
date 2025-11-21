@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>AI Risk Assessment Survey - Probability Allocation Interface</title>
+    <style>
+        body {
+            font-family: 'Figtree', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        .survey-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .survey-header {
+            background: #a31e38;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .survey-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .survey-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .survey-content {
+            padding: 40px;
+        }
+
+        .risk-item {
+            margin-bottom: 40px;
+        }
+
+        .risk-header {
+            margin-bottom: 25px;
+        }
+
+        .risk-code {
+            display: inline-block;
+            background: #a31e38;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .risk-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 12px 0;
+        }
+
+        .risk-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .instructions-title {
+            font-weight: 600;
+            color: #1976d2;
+            margin: 0 0 8px 0;
+        }
+
+        .instructions-text {
+            color: #1565c0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .severity-levels {
+            margin-bottom: 30px;
+        }
+
+        .severity-item {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .severity-item.error {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .severity-item.valid {
+            border-color: #28a745;
+            background: #f8fff8;
+        }
+
+        .severity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .severity-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .severity-value {
+            font-weight: 700;
+            color: #a31e38;
+            font-size: 18px;
+        }
+
+        .severity-definition {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .slider-container {
+            position: relative;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #a31e38;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #a31e38;
+            cursor: pointer;
+            border: none;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .interpretation-box {
+            background: #fff9f5;
+            border: 2px solid #f4a582;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .interpretation-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #a31e38;
+            margin: 0 0 15px 0;
+        }
+
+        .interpretation-content {
+            color: #333;
+        }
+
+        .cumulative-section, .unique-section {
+            margin: 20px 0;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: #a31e38;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .probability-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+        }
+
+        .probability-item {
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+        }
+
+        .probability-value {
+            font-weight: 700;
+            color: #a31e38;
+        }
+
+        .narrative-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #a31e38;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .mini-chart {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .validation-summary {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .validation-summary.show {
+            display: block;
+        }
+
+        .validation-summary.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .validation-summary.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        @media (max-width: 768px) {
+            .survey-content {
+                padding: 20px;
+            }
+            
+            .severity-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <div class="survey-header">
+            <h1 class="survey-title">AI Risk Assessment Survey</h1>
+            <p class="survey-subtitle">Probability Allocation Method - Delphi Round 1</p>
+        </div>
+
+        <div class="survey-content">
+            <div class="risk-item">
+                <div class="risk-header">
+                    <div class="risk-code">RISK 3.1</div>
+                    <h2 class="risk-title">False or Misleading Information</h2>
+                    <p class="risk-description">
+                        AI systems generating, amplifying, or failing to identify false or misleading information across various domains, potentially affecting decision-making processes and public understanding.
+                    </p>
+                </div>
+
+                <div class="instructions">
+                    <div class="instructions-title">Instructions</div>
+                    <p class="instructions-text">
+                        Allocate 100% probability across the severity levels below, indicating the chance this risk will result in <strong>exactly</strong> that level of harm over the next 5 years (2025-2030). All percentages must sum to exactly 100%.
+                    </p>
+                </div>
+
+                <div class="validation-summary" id="validationSummary">
+                    <strong>⚠️ Validation Issue:</strong> <span id="validationMessage"></span>
+                </div>
+
+                <div class="severity-levels">
+                    <div class="severity-item" data-level="no_harm">
+                        <div class="severity-header">
+                            <div class="severity-label">No harmful impacts</div>
+                            <div class="severity-value"><span id="no_harm-value">15</span>%</div>
+                        </div>
+                        <div class="severity-definition">
+                            No measurable negative impacts from this risk over the assessment period
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="100" value="15" class="slider" id="no_harm-slider">
+                        </div>
+                        <div class="error-message" id="no_harm-error"></div>
+                    </div>
+
+                    <div class="severity-item" data-level="minor">
+                        <div class="severity-header">
+                            <div class="severity-label">Minor impacts</div>
+                            <div class="severity-value"><span id="minor-value">15</span>%</div>
+                        </div>
+                        <div class="severity-definition">
+                            Small-scale impacts affecting limited populations, easily managed with existing resources
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="100" value="15" class="slider" id="minor-slider">
+                        </div>
+                        <div class="error-message" id="minor-error"></div>
+                    </div>
+
+                    <div class="severity-item" data-level="limited">
+                        <div class="severity-header">
+                            <div class="severity-label">Limited impacts</div>
+                            <div class="severity-value"><span id="limited-value">20</span>%</div>
+                        </div>
+                        <div class="severity-definition">
+                            Notable impacts on specific groups, sectors, or regions requiring targeted interventions
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="100" value="20" class="slider" id="limited-slider">
+                        </div>
+                        <div class="error-message" id="limited-error"></div>
+                    </div>
+
+                    <div class="severity-item" data-level="moderate">
+                        <div class="severity-header">
+                            <div class="severity-label">Moderate impacts</div>
+                            <div class="severity-value"><span id="moderate-value">20</span>%</div>
+                        </div>
+                        <div class="severity-definition">
+                            Substantial negative impacts with broader societal implications requiring coordinated response
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="100" value="20" class="slider" id="moderate-slider">
+                        </div>
+                        <div class="error-message" id="moderate-error"></div>
+                    </div>
+
+                    <div class="severity-item" data-level="significant">
+                        <div class="severity-header">
+                            <div class="severity-label">Significant impacts</div>
+                            <div class="severity-value"><span id="significant-value">18</span>%</div>
+                        </div>
+                        <div class="severity-definition">
+                            Severe impacts affecting large populations, requiring major policy or technological changes
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="100" value="18" class="slider" id="significant-slider">
+                        </div>
+                        <div class="error-message" id="significant-error"></div>
+                    </div>
+
+                    <div class="severity-item" data-level="catastrophic">
+                        <div class="severity-header">
+                            <div class="severity-label">Catastrophic impacts</div>
+                            <div class="severity-value"><span id="catastrophic-value">12</span>%</div>
+                        </div>
+                        <div class="severity-definition">
+                            Extreme impacts with potentially irreversible consequences at societal or global scale
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="100" value="12" class="slider" id="catastrophic-slider">
+                        </div>
+                        <div class="error-message" id="catastrophic-error"></div>
+                    </div>
+                </div>
+
+                <div class="interpretation-box">
+                    <div class="interpretation-title">Your Assessment Summary</div>
+                    <div class="interpretation-content" id="interpretationContent">
+                        
+                        <div class="narrative-summary" id="narrativeSummary">
+                            Based on your assessment, false or misleading information is most likely to result in limited impacts (20% chance). You think there's a 50% chance this risk will cause moderate impacts or worse.
+                        </div>
+                        
+                        <div class="cumulative-section">
+                            <div class="section-title">Cumulative Probabilities (at least this severe)</div>
+                            <ul class="probability-list" id="cumulativeList">
+                                <li class="probability-item"><span class="probability-value">85%</span> chance of minor impacts or worse</li>
+                                <li class="probability-item"><span class="probability-value">70%</span> chance of limited impacts or worse</li>
+                                <li class="probability-item"><span class="probability-value">50%</span> chance of moderate impacts or worse</li>
+                                <li class="probability-item"><span class="probability-value">30%</span> chance of significant impacts or worse</li>
+                                <li class="probability-item"><span class="probability-value">12%</span> chance of catastrophic impacts</li>
+                            </ul>
+                        </div>
+
+                        <div class="unique-section">
+                            <div class="section-title">Individual Level Probabilities (your allocation)</div>
+                            <ul class="probability-list" id="uniqueList">
+                                <li class="probability-item"><span class="probability-value">15%</span> no harmful impacts</li>
+                                <li class="probability-item"><span class="probability-value">15%</span> minor impacts</li>
+                                <li class="probability-item"><span class="probability-value">20%</span> limited impacts</li>
+                                <li class="probability-item"><span class="probability-value">20%</span> moderate impacts</li>
+                                <li class="probability-item"><span class="probability-value">18%</span> significant impacts</li>
+                                <li class="probability-item"><span class="probability-value">12%</span> catastrophic impacts</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const riskName = 'false or misleading information';
+        const severityLevels = ['no_harm', 'minor', 'limited', 'moderate', 'significant', 'catastrophic'];
+        
+        let currentValues = {
+            no_harm: 15,
+            minor: 15,
+            limited: 20,
+            moderate: 20,
+            significant: 18,
+            catastrophic: 12
+        };
+
+        function validateValues() {
+            let isValid = true;
+            let errors = [];
+            const validationSummary = document.getElementById('validationSummary');
+            const validationMessage = document.getElementById('validationMessage');
+
+            // Reset all error states
+            severityLevels.forEach(level => {
+                const item = document.querySelector(`[data-level="${level}"]`);
+                const errorMsg = document.getElementById(`${level}-error`);
+                item.classList.remove('error', 'valid');
+                errorMsg.style.display = 'none';
+            });
+
+            // Calculate total percentage
+            const total = Object.values(currentValues).reduce((sum, value) => sum + value, 0);
+            
+            if (Math.abs(total - 100) > 0.1) { // Allow small rounding differences
+                isValid = false;
+                const error = `Total must equal 100% (currently ${total.toFixed(1)}%)`;
+                errors.push(error);
+                
+                // Mark all items as error
+                severityLevels.forEach(level => {
+                    document.querySelector(`[data-level="${level}"]`).classList.add('error');
+                    document.getElementById(`${level}-error`).textContent = `Total: ${total.toFixed(1)}%`;
+                    document.getElementById(`${level}-error`).style.display = 'block';
+                });
+            }
+
+            if (isValid) {
+                // Mark all as valid
+                severityLevels.forEach(level => {
+                    document.querySelector(`[data-level="${level}"]`).classList.add('valid');
+                });
+                validationSummary.className = 'validation-summary success show';
+                validationMessage.textContent = 'All values sum to 100%!';
+            } else {
+                validationSummary.className = 'validation-summary error show';
+                validationMessage.textContent = errors[0]; // Show first error
+            }
+
+            return isValid;
+        }
+
+        function updateInterpretation() {
+            const narrativeSummary = document.getElementById('narrativeSummary');
+            const cumulativeList = document.getElementById('cumulativeList');
+            const uniqueList = document.getElementById('uniqueList');
+            
+            // Individual probabilities are what the user directly set
+            const individualProbs = currentValues;
+            
+            // Calculate cumulative probabilities (at least this severe) from individual allocations
+            const cumulativeProbs = {
+                'minor_or_worse': currentValues.minor + currentValues.limited + currentValues.moderate + currentValues.significant + currentValues.catastrophic,
+                'limited_or_worse': currentValues.limited + currentValues.moderate + currentValues.significant + currentValues.catastrophic,
+                'moderate_or_worse': currentValues.moderate + currentValues.significant + currentValues.catastrophic,
+                'significant_or_worse': currentValues.significant + currentValues.catastrophic,
+                'catastrophic': currentValues.catastrophic
+            };
+            
+            // Find most likely single outcome
+            const outcomes = [
+                { label: 'no harmful impacts', prob: currentValues.no_harm },
+                { label: 'minor impacts', prob: currentValues.minor },
+                { label: 'limited impacts', prob: currentValues.limited },
+                { label: 'moderate impacts', prob: currentValues.moderate },
+                { label: 'significant impacts', prob: currentValues.significant },
+                { label: 'catastrophic impacts', prob: currentValues.catastrophic }
+            ];
+            
+            const mostLikely = outcomes.reduce((max, current) => 
+                current.prob > max.prob ? current : max
+            );
+            
+            // Generate narrative summary
+            narrativeSummary.innerHTML = `Based on your assessment, <strong>${riskName}</strong> is most likely to result in <strong>${mostLikely.label}</strong> (${mostLikely.prob}% chance). You think there's a <strong>${cumulativeProbs.moderate_or_worse.toFixed(0)}% chance</strong> this risk will cause moderate impacts or worse.`;
+            
+            // Display cumulative probabilities
+            const cumulativeItems = [
+                `<li class="probability-item"><span class="probability-value">${cumulativeProbs.minor_or_worse.toFixed(0)}%</span> chance of minor impacts or worse</li>`,
+                `<li class="probability-item"><span class="probability-value">${cumulativeProbs.limited_or_worse.toFixed(0)}%</span> chance of limited impacts or worse</li>`,
+                `<li class="probability-item"><span class="probability-value">${cumulativeProbs.moderate_or_worse.toFixed(0)}%</span> chance of moderate impacts or worse</li>`,
+                `<li class="probability-item"><span class="probability-value">${cumulativeProbs.significant_or_worse.toFixed(0)}%</span> chance of significant impacts or worse</li>`,
+                `<li class="probability-item"><span class="probability-value">${cumulativeProbs.catastrophic.toFixed(0)}%</span> chance of catastrophic impacts</li>`
+            ].join('');
+            
+            // Display individual probabilities (what they directly set)
+            const uniqueItems = [
+                `<li class="probability-item"><span class="probability-value">${currentValues.no_harm}%</span> no harmful impacts</li>`,
+                `<li class="probability-item"><span class="probability-value">${currentValues.minor}%</span> minor impacts</li>`,
+                `<li class="probability-item"><span class="probability-value">${currentValues.limited}%</span> limited impacts</li>`,
+                `<li class="probability-item"><span class="probability-value">${currentValues.moderate}%</span> moderate impacts</li>`,
+                `<li class="probability-item"><span class="probability-value">${currentValues.significant}%</span> significant impacts</li>`,
+                `<li class="probability-item"><span class="probability-value">${currentValues.catastrophic}%</span> catastrophic impacts</li>`
+            ].join('');
+            
+            cumulativeList.innerHTML = cumulativeItems;
+            uniqueList.innerHTML = uniqueItems;
+        }
+
+        // Debounce function to limit expensive operations
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Debounced validation for smoother performance
+        const debouncedValidateValues = debounce(validateValues, 150);
+
+        function setupSliders() {
+            severityLevels.forEach(level => {
+                const slider = document.getElementById(`${level}-slider`);
+                const valueDisplay = document.getElementById(`${level}-value`);
+                
+                slider.addEventListener('input', (e) => {
+                    const value = parseInt(e.target.value);
+                    currentValues[level] = value;
+                    valueDisplay.textContent = value;
+                    
+                    updateInterpretation();
+                    debouncedValidateValues();
+                });
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            setupSliders();
+            updateInterpretation();
+            validateValues();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "source": "/meet",
+      "destination": "https://calendar.app.google/sv3Sb5sjUxxTdssv8",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities",
+      "destination": "https://docs.google.com/document/d/1TRfgYpy8dOTXU_KJpqq1ZkBIUKqpyOaW6vBqufpRqGw/edit",
+      "permanent": true
+    },
+    {
+      "source": "/eoi",
+      "destination": "https://forms.gle/6BEMc3DYuU52yfGn8",
+      "permanent": true
+    },
+    {
+      "source": "/intro",
+      "destination": "https://docs.google.com/document/d/1UjL4NztBiiTYw7p-HZrefE2XocCSKZ77WEOQ-P3LoH0/copy",
+      "permanent": true
+    },
+    {
+      "source": "/cv",
+      "destination": "https://docs.google.com/document/d/1h9amaSB6MOZ1lSANBEhf1SOaMfQg4Y2_12wK3l-CrT4/edit",
+      "permanent": true
+    }
+  ]
+}

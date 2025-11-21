@@ -1,10 +1,25 @@
-# IDEs
-.idea/
+# build output
+dist/
+.output/
 
-# Hugo
-resources/
-public/
-jsconfig.json
+# dependencies
 node_modules/
-go.sum
-.hugo_build.lock
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains ide
+.idea
+
+# vscode
+.vscode/
