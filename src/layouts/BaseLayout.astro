@@ -1,10 +1,14 @@
 ---
+import '../styles/brand.css';
+
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = 'Alexander K. Saeri', description = 'AI safety researcher and policy analyst' } = Astro.props;
+const { title = 'Alexander K Saeri', description = 'AI safety researcher and policy analyst' } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (path: string) => path === pathname || (path !== '/' && pathname.startsWith(path));
 ---
 
 <!DOCTYPE html>
@@ -16,179 +20,594 @@ const { title = 'Alexander K. Saeri', description = 'AI safety researcher and po
   <title>{title}</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <style is:global>
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html { -webkit-text-size-adjust: 100%; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      font-family: var(--font-family);
+      font-weight: var(--font-weight-regular);
+      font-size: 1rem;
       line-height: 1.6;
-      color: #333;
-      max-width: 900px;
+      color: var(--color-text);
+      background: var(--color-background);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Shell: bicolumn on desktop, stacked on mobile */
+
+    .shell {
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 0 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "main"
+        "meta"
+        "footer";
+      column-gap: 0;
     }
 
-    header {
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid #e5e5e5;
+    @media (min-width: 851px) {
+      .shell {
+        grid-template-columns: 260px 1px 1fr;
+        grid-template-areas:
+          "sidebar rule main"
+          "footer  footer footer";
+        column-gap: 3rem;
+        padding: 0 2rem;
+      }
     }
 
-    nav {
-      margin-top: 1rem;
+    /* Sidebar wrapper: bundles header + meta on desktop, dissolves on mobile */
+
+    .sidebar-content {
+      display: contents;
     }
 
-    nav a {
-      margin-right: 1.5rem;
+    @media (min-width: 851px) {
+      .sidebar-content {
+        display: block;
+        grid-area: sidebar;
+        position: sticky;
+        top: 3rem;
+        align-self: start;
+        padding: 3rem 0;
+      }
+    }
+
+    /* Header */
+
+    .site-header {
+      grid-area: header;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--color-background);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    @media (min-width: 851px) {
+      .site-header {
+        display: block;
+        position: static;
+        padding: 0 0 1.5rem 0;
+        background: transparent;
+        border-bottom: none;
+      }
+    }
+
+    .wordmark {
+      font-family: var(--font-family);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: -0.01em;
+      color: var(--color-primary);
       text-decoration: none;
-      color: #0066cc;
-      font-weight: 500;
+      line-height: 1.2;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .wordmark:hover {
+      color: var(--color-primary-dark);
+      text-decoration: none;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      color: #111;
+    @media (min-width: 851px) {
+      .wordmark {
+        display: block;
+        font-size: 1.0625rem;
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    .site-tagline {
+      display: none;
+    }
+
+    @media (min-width: 851px) {
+      .site-tagline {
+        display: block;
+        font-size: var(--font-size-sm);
+        color: var(--color-text-muted);
+        line-height: 1.5;
+        margin-bottom: 1.75rem;
+      }
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      padding: 0.75rem 0;
+      border-bottom: 2px solid transparent;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .site-nav a:hover {
+      color: var(--color-primary-dark);
+      text-decoration: none;
+    }
+
+    .site-nav a[aria-current="page"] {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    @media (min-width: 851px) {
+      .site-nav {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 2rem;
+      }
+
+      .site-nav a {
+        padding: 0.4rem 0 0.4rem 0.75rem;
+        margin-left: -0.75rem;
+        min-height: 0;
+        border-bottom: none;
+        border-left: 2px solid transparent;
+      }
+
+      .site-nav a[aria-current="page"] {
+        border-bottom-color: transparent;
+        border-left-color: var(--color-primary);
+        font-weight: var(--font-weight-semibold);
+      }
+    }
+
+    /* Vertical rule (desktop only) */
+
+    .site-rule {
+      display: none;
+    }
+
+    @media (min-width: 851px) {
+      .site-rule {
+        display: block;
+        grid-area: rule;
+        background: var(--color-border);
+        width: 1px;
+        align-self: stretch;
+      }
+    }
+
+    /* Main column */
+
+    main {
+      grid-area: main;
+      min-width: 0;
+      padding: 1.5rem 0 2rem;
+    }
+
+    @media (min-width: 851px) {
+      main {
+        padding: 3rem 0 4rem;
+      }
+    }
+
+    /* Lead block (intro/hero) */
+
+    .lead-block {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lead-block h1 {
+      font-size: 1.75rem;
+      font-weight: var(--font-weight-bold);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      max-width: 18ch;
+    }
+
+    @media (min-width: 851px) {
+      .lead-block h1 {
+        font-size: 2.25rem;
+      }
+    }
+
+    .lead-block .lede {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--color-text);
+      max-width: 42em;
+      margin-bottom: 1rem;
+    }
+
+    .lead-block .lede strong { font-weight: var(--font-weight-semibold); color: var(--color-primary); }
+
+    /* Sections */
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 851px) {
+      .section {
+        margin-bottom: 3rem;
+      }
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-head h2 {
+      font-size: 1.0625rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      letter-spacing: -0.005em;
+    }
+
+    .section-head .section-meta {
+      margin-left: auto;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    /* Typography (general) */
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-family);
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
     }
 
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.375rem;
+      font-weight: var(--font-weight-semibold);
       margin-top: 2.5rem;
       margin-bottom: 1rem;
-      color: #111;
+    }
+
+    @media (min-width: 851px) {
+      h2 {
+        font-size: 1.5rem;
+      }
     }
 
     h3 {
-      font-size: 1.3rem;
+      font-size: 1.125rem;
+      font-weight: var(--font-weight-semibold);
       margin-top: 2rem;
-      margin-bottom: 0.75rem;
-      color: #333;
+      margin-bottom: 0.5rem;
     }
 
     p {
       margin-bottom: 1rem;
+      overflow-wrap: anywhere;
     }
 
     a {
-      color: #0066cc;
+      color: var(--color-link);
       text-decoration: none;
     }
 
     a:hover {
+      color: var(--color-link-hover);
       text-decoration: underline;
     }
 
-    ul {
+    ul, ol {
       margin-bottom: 1rem;
-      margin-left: 2rem;
+      padding-left: 1.25rem;
     }
 
     li {
       margin-bottom: 0.5rem;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: #0066cc;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 500;
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .btn:hover {
-      background-color: #0052a3;
-      text-decoration: none;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: #0066cc;
-      border: 2px solid #0066cc;
-    }
-
-    .btn-outline:hover {
-      background-color: #0066cc;
-      color: white;
-    }
-
-    .section {
-      margin-bottom: 3rem;
-    }
-
-    footer {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 2px solid #e5e5e5;
-      color: #666;
-      font-size: 0.9rem;
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 1.5rem 0;
     }
 
     img {
       max-width: 100%;
       height: auto;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
     }
 
-    hr {
-      border: none;
-      border-top: 1px solid #e5e5e5;
-      margin: 2rem 0;
+    .project-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border-radius: var(--radius-md);
     }
+
+    /* Buttons */
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 1.5rem;
+      background: var(--color-primary);
+      color: var(--color-white);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-sm);
+      border: 1.5px solid var(--color-primary);
+      min-height: 44px;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: var(--color-white);
+      text-decoration: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: rgba(23, 135, 155, 0.08);
+      color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+    }
+
+    /* Bio row (avatar + paragraph) */
 
     .profile-header {
       display: flex;
-      align-items: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 851px) {
+      .profile-header {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
     }
 
     .profile-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      border-radius: var(--radius-full);
       object-fit: cover;
       flex-shrink: 0;
     }
 
     .profile-content {
       flex: 1;
+      min-width: 0;
     }
 
-    @media (max-width: 600px) {
-      .profile-header {
-        flex-direction: column;
-        text-align: center;
+    /* Numbered streams (for ordered lists with our styling) */
+
+    ol.streams {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: stream;
+    }
+
+    ol.streams li {
+      counter-increment: stream;
+      position: relative;
+      padding: 0.875rem 0 0.875rem 2.75rem;
+      border-top: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+
+    ol.streams li:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    ol.streams li::before {
+      content: counter(stream, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 1.05rem;
+      color: var(--color-primary);
+      font-weight: var(--font-weight-bold);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Meta block (sidebar items: affiliations, location, elsewhere) */
+
+    .site-meta {
+      grid-area: meta;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    @media (min-width: 851px) {
+      .site-meta {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: none;
       }
+    }
+
+    .meta-block {
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .meta-label {
+      display: block;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: 0.4rem;
+    }
+
+    .meta-block p, .meta-block ul {
+      font-size: var(--font-size-sm);
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    .meta-block ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .meta-block ul li {
+      margin-bottom: 0.15rem;
+    }
+
+    .meta-block a {
+      color: var(--color-primary);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .meta-block a:hover {
+      color: var(--color-primary-dark);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+
+    .site-footer {
+      grid-area: footer;
+      padding: 2rem 0;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+    }
+
+    /* Skip link (accessibility) */
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 0.5rem 1rem;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Alexander K. Saeri</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/other-projects">Other Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="shell">
+    <div class="sidebar-content">
+      <header class="site-header">
+        <a href="/" class="wordmark">Alexander K Saeri</a>
+        <p class="site-tagline">Researcher &amp; policy analyst<br>AI governance · AI safety</p>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="/" aria-current={isActive('/') ? 'page' : undefined}>Home</a>
+          <a href="/other-projects" aria-current={isActive('/other-projects') ? 'page' : undefined}>Other projects</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </header>
 
-  <main>
-    <slot />
-  </main>
+      <aside class="site-meta" aria-label="Profile metadata">
+        <div class="meta-block">
+          <span class="meta-label">Affiliations</span>
+          <p>MIT FutureTech<br>University of Queensland<br>Good Ancestors Policy</p>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">Based in</span>
+          <p>Naarm / Melbourne, Australia</p>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">Elsewhere</span>
+          <ul>
+            <li><a href="https://scholar.google.com.au/citations?user=B_bJG3kAAAAJ">Google Scholar</a></li>
+            <li><a href="https://airisk.mit.edu">airisk.mit.edu</a></li>
+            <li><a href="https://aisafety.org.au">aisafety.org.au</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
-  <footer>
-    <p>&copy; {new Date().getFullYear()} Alexander K. Saeri. All rights reserved.</p>
-  </footer>
+    <div class="site-rule" aria-hidden="true"></div>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; {new Date().getFullYear()} Alexander K Saeri</p>
+    </footer>
+  </div>
 </body>
 </html>
