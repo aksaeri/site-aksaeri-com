@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import avatar from '../assets/avatar.jpg';
 ---
 
 <BaseLayout
@@ -19,7 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="section" id="about">
     <h2>About</h2>
     <div class="profile-header">
-      <img src="/avatar.jpg" alt="Alexander K. Saeri" class="profile-image">
+      <Image src={avatar} alt="Alexander K. Saeri" class="profile-image" widths={[200, 400]} sizes="(max-width: 600px) 200px, 400px" />
       <div class="profile-content">
         <p>I'm a researcher and policy analyst focused on understanding and managing risks from advanced AI systems. My work combines systematic evidence synthesis, expert consultation methods, and practical policy engagement to inform decision-makers about AI governance.</p>
       </div>

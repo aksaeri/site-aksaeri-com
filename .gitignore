@@ -24,6 +24,8 @@ pnpm-debug.log*
 # vscode
 .vscode/
 
-# Hugo
-.hugo_build.lock
-/resources/_gen/
+# Claude Code
+.claude/
+
+# Astro
+.astro/
