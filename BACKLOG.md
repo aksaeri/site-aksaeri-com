@@ -1,20 +1,28 @@
 # Backlog
 
-## Image replacements
+## Portrait swap
 
-The following project tiles on `/other-projects` previously used Unsplash placeholder photos. The photos were removed in the cleanup pass; the tiles currently render without an image (HTML comment placeholder in `src/pages/other-projects.astro`).
+The About section currently uses the legacy avatar (`src/assets/avatar.jpg`) as a placeholder. Drop in a new portrait by overwriting that file with the same path and name — everything else (sizing, circular crop, responsive variants) is handled automatically.
 
-| Project | Removed file | Replacement notes |
-|---|---|---|
-| SCRUB COVID-19 Survey | `sean-horsburgh-cxyq5_64lam-unsplash.jpg` | Ideally an image of the SCRUB project itself — survey chart, dashboard screenshot, or BWA photo. |
-| Scale-up Toolkit | `dustin-humes-y-esivccgdq-unsplash.jpg` | Toolkit cover, photo of the published toolkit, or BWA project page screenshot. |
+If the new portrait has a meaningfully different aspect ratio, you may want to bump the `widths={[200, 400]}` array in `src/pages/index.astro`.
 
-To restore an image:
+## Unused project images
 
-1. Drop the file into `src/assets/projects/<slug>.jpg`.
-2. In `src/pages/other-projects.astro`, import it and replace the `<!-- TODO -->` comment with an `<Image>` tag matching the pattern used by the other project tiles.
+`src/assets/projects/` still holds four images that were used by the now-removed `other-projects.astro` page:
 
-## Other open items
+- `climate-adaptation.jpg`
+- `ready-research.jpg`
+- `safe-and-responsible-ai.jpeg`
+- `survey-assessing-risks-ai.jpg`
 
-- Content updates from the LinkedIn brainstorm (`~/inbox/website_briefing.md`) are still to be applied.
-- After content lands, push the local `main` commit (`105c87e`) to trigger the Vercel rebuild.
+Left in place in case a portfolio / projects page is reintroduced later. Safe to `git rm` if not.
+
+## Eventual extensions (from website briefing)
+
+- Dedicated consulting / advising / speaking services section with offerings and rates.
+- Featured / case studies section.
+- Newsletter or subscribe option.
+
+## After content is final
+
+- Push `main` to origin to trigger the Vercel rebuild and update the live site.

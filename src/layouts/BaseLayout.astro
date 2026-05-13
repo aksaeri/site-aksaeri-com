@@ -7,8 +7,6 @@ interface Props {
 }
 
 const { title = 'Alexander K Saeri', description = 'AI safety researcher and policy analyst' } = Astro.props;
-const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (path: string) => path === pathname || (path !== '/' && pathname.startsWith(path));
 ---
 
 <!DOCTYPE html>
@@ -26,7 +24,14 @@ const isActive = (path: string) => path === pathname || (path !== '/' && pathnam
       box-sizing: border-box;
     }
 
-    html { -webkit-text-size-adjust: 100%; }
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-padding-top: 5rem;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
 
     body {
       font-family: var(--font-family);
@@ -370,6 +375,113 @@ const isActive = (path: string) => path === pathname || (path !== '/' && pathnam
       border-radius: var(--radius-md);
     }
 
+    /* Header banner (wide section/page hero photos) */
+
+    .header-banner {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius-md);
+      margin: 2rem 0;
+      display: block;
+    }
+
+    @media (min-width: 851px) {
+      .header-banner {
+        margin: 2.5rem 0;
+      }
+    }
+
+    /* Workstream cards (AIRI section) */
+
+    ul.workstreams {
+      list-style: none;
+      padding-left: 0;
+      margin: 1.75rem 0 2rem;
+    }
+
+    ul.workstreams li {
+      padding: 0.1rem 0 0.4rem 1.25rem;
+      border-left: 2px solid var(--color-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    ul.workstreams li:last-child {
+      margin-bottom: 0;
+    }
+
+    .workstream-name {
+      font-size: 1.0625rem;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text);
+      letter-spacing: -0.005em;
+      margin-bottom: 0.25rem;
+    }
+
+    .workstream-q {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .workstream-a {
+      font-size: var(--font-size-base);
+      margin-bottom: 0;
+    }
+
+    /* Pull quote (Bengio testimonial) */
+
+    .pullquote {
+      border-left: 3px solid var(--color-primary);
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      margin: 2.5rem 0;
+      color: var(--color-text);
+    }
+
+    .pullquote p {
+      font-size: 1.0625rem;
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.55;
+      letter-spacing: -0.005em;
+      margin-bottom: 0.75rem;
+    }
+
+    .pullquote footer {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-regular);
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    /* Publications list */
+
+    ul.publications {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.publications li {
+      padding: 0.4rem 0 0.6rem 0;
+      font-size: var(--font-size-sm);
+      line-height: 1.55;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+
+    ul.publications li:last-child {
+      border-bottom: none;
+    }
+
+    @media (min-width: 851px) {
+      ul.publications li {
+        font-size: var(--font-size-base);
+      }
+    }
+
     /* Buttons */
 
     .cta-row {
@@ -573,8 +685,9 @@ const isActive = (path: string) => path === pathname || (path !== '/' && pathnam
         <a href="/" class="wordmark">Alexander K Saeri</a>
         <p class="site-tagline">Researcher &amp; policy analyst<br>AI governance · AI safety</p>
         <nav class="site-nav" aria-label="Primary">
-          <a href="/" aria-current={isActive('/') ? 'page' : undefined}>Home</a>
-          <a href="/other-projects" aria-current={isActive('/other-projects') ? 'page' : undefined}>Other projects</a>
+          <a href="/#about">About</a>
+          <a href="/#airi">AIRI</a>
+          <a href="/#publications">Publications</a>
           <a href="/#contact">Contact</a>
         </nav>
       </header>
