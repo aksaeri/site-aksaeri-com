@@ -16,7 +16,17 @@ const { title = 'Alexander K Saeri', description = 'AI safety researcher and pol
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content={description}>
   <title>{title}</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
+  <script is:inline>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
   <style is:global>
     *, *::before, *::after {
       margin: 0;
@@ -31,6 +41,32 @@ const { title = 'Alexander K Saeri', description = 'AI safety researcher and pol
 
     @media (prefers-reduced-motion: no-preference) {
       html { scroll-behavior: smooth; }
+    }
+
+    /* Dark mode overrides (extends brand.css tokens) */
+
+    :root[data-theme="dark"] {
+      --color-background: #161616;
+      --color-text: #EAEAEA;
+      --color-text-muted: #A6A6A6;
+      --color-border: #2A2A2A;
+      --color-border-strong: #444444;
+      --color-white: #1F1F1F;
+      --color-primary-dark: #2BA0B8;
+      --color-link: #5FAFBE;
+      --color-link-hover: #80CAD9;
+    }
+
+    /* Teal-as-text needs to lift in dark mode for legibility */
+    :root[data-theme="dark"] .wordmark,
+    :root[data-theme="dark"] .lede strong,
+    :root[data-theme="dark"] .site-nav a[aria-current="page"],
+    :root[data-theme="dark"] .btn-outline {
+      color: #5FAFBE;
+    }
+
+    :root[data-theme="dark"] .btn-outline {
+      border-color: #5FAFBE;
     }
 
     body {
@@ -659,6 +695,42 @@ const { title = 'Alexander K Saeri', description = 'AI safety researcher and pol
       font-size: var(--font-size-sm);
     }
 
+    /* Theme toggle */
+
+    .theme-toggle {
+      background: transparent;
+      border: 0;
+      padding: 0.5rem;
+      cursor: pointer;
+      color: var(--color-text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      min-width: 44px;
+      border-radius: var(--radius-sm);
+    }
+
+    .theme-toggle:hover {
+      color: var(--color-primary);
+    }
+
+    :root[data-theme="dark"] .theme-toggle:hover {
+      color: #5FAFBE;
+    }
+
+    .theme-toggle .theme-icon-moon { display: none; }
+
+    :root[data-theme="dark"] .theme-toggle .theme-icon-sun { display: none; }
+    :root[data-theme="dark"] .theme-toggle .theme-icon-moon { display: inline; }
+
+    @media (min-width: 851px) {
+      .theme-toggle {
+        margin: 0.5rem 0 1.5rem -0.5rem;
+        align-self: flex-start;
+      }
+    }
+
     /* Skip link (accessibility) */
 
     .skip-link {
@@ -683,30 +755,40 @@ const { title = 'Alexander K Saeri', description = 'AI safety researcher and pol
     <div class="sidebar-content">
       <header class="site-header">
         <a href="/" class="wordmark">Alexander K Saeri</a>
-        <p class="site-tagline">Researcher &amp; policy analyst<br>AI governance · AI safety</p>
+        <p class="site-tagline">AI governance researcher</p>
         <nav class="site-nav" aria-label="Primary">
           <a href="/#about">About</a>
-          <a href="/#airi">AIRI</a>
+          <a href="/#airi">AI Risk Initiative</a>
           <a href="/#publications">Publications</a>
           <a href="/#contact">Contact</a>
         </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg class="theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
       </header>
 
       <aside class="site-meta" aria-label="Profile metadata">
         <div class="meta-block">
           <span class="meta-label">Affiliations</span>
-          <p>MIT FutureTech<br>University of Queensland<br>Good Ancestors Policy</p>
+          <p>MIT FutureTech<br>The University of Queensland</p>
         </div>
         <div class="meta-block">
           <span class="meta-label">Based in</span>
-          <p>Naarm / Melbourne, Australia</p>
+          <p>Melbourne, Australia (UTC+10)</p>
         </div>
         <div class="meta-block">
           <span class="meta-label">Elsewhere</span>
           <ul>
             <li><a href="https://scholar.google.com.au/citations?user=B_bJG3kAAAAJ">Google Scholar</a></li>
+            <li><a href="https://www.linkedin.com/in/aksaeri">LinkedIn</a></li>
+            <li><a href="https://github.com/aksaeri">GitHub</a></li>
             <li><a href="https://airisk.mit.edu">airisk.mit.edu</a></li>
-            <li><a href="https://aisafety.org.au">aisafety.org.au</a></li>
           </ul>
         </div>
       </aside>
@@ -722,5 +804,17 @@ const { title = 'Alexander K Saeri', description = 'AI safety researcher and pol
       <p>&copy; {new Date().getFullYear()} Alexander K Saeri</p>
     </footer>
   </div>
+  <script is:inline>
+    // Theme toggle
+    var themeBtn = document.querySelector('.theme-toggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    }
+  </script>
 </body>
 </html>

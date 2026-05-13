@@ -1,9 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import avatar from '../assets/avatar.jpg';
-import heroPresenting from '../assets/headers/hero-presenting.jpg';
-import airiSpeaking from '../assets/headers/airi-speaking.jpg';
+import heroPhoto from '../assets/headers/hero.jpg';
 ---
 
 <BaseLayout
@@ -11,17 +9,17 @@ import airiSpeaking from '../assets/headers/airi-speaking.jpg';
   description="I direct the MIT AI Risk Initiative, building the evidence base that decision-makers need to manage the most important risks from AI."
 >
   <section class="lead-block">
-    <h1>Shaping the governance of advanced AI.</h1>
+    <h1>AI risk research for decision-makers.</h1>
     <p class="lede">I direct the <strong>MIT AI Risk Initiative</strong>, building the evidence base that decision-makers need to manage the most important risks from AI.</p>
     <div class="cta-row">
-      <a href="https://airisk.mit.edu" class="btn">Explore the AI Risk Repository</a>
-      <a href="#contact" class="btn btn-outline">Request a briefing</a>
+      <a href="https://airisk.mit.edu" class="btn">Explore the AI Risk Initiative</a>
+      <a href="#contact" class="btn btn-outline">Request a meeting</a>
     </div>
   </section>
 
   <Image
-    src={heroPresenting}
-    alt="Alexander K Saeri presenting at the EA Global conference, November 2025"
+    src={heroPhoto}
+    alt="Alexander K Saeri speaking at the EA Global conference, November 2025"
     class="header-banner"
     widths={[600, 1000, 1600]}
     sizes="(max-width: 850px) 100vw, 800px"
@@ -30,67 +28,48 @@ import airiSpeaking from '../assets/headers/airi-speaking.jpg';
 
   <div class="section" id="about">
     <h2>About</h2>
-    <div class="profile-header">
-      <Image src={avatar} alt="Alexander K Saeri" class="profile-image" widths={[200, 400]} sizes="(max-width: 600px) 200px, 400px" />
-      <div class="profile-content">
-        <p>I'm a researcher and research leader focused on understanding and managing risks from advanced AI systems. I direct the MIT AI Risk Initiative at MIT FutureTech, and hold positions at MIT FutureTech and the University of Queensland. I'm based in Melbourne.</p>
-        <p>My methods background is in social psychology, applied behaviour science, implementation science, systems thinking, and survey research. I am most interested in improving policy and governance for highly capable general-purpose AI.</p>
-      </div>
-    </div>
+    {/* Portrait placeholder — drop a new image into src/assets/avatar.jpg, then reinstate <Image /> and .profile-header wrapper. See BACKLOG.md */}
+    <p>I conduct and communicate research to help govern highly capable general-purpose AI. I direct the MIT AI Risk Initiative at MIT FutureTech, and hold positions at MIT FutureTech and The University of Queensland. I'm based in Melbourne.</p>
+    <p>My methods background is in social psychology, applied behaviour science, implementation science, evidence synthesis, systems thinking, and survey research.</p>
   </div>
 
   <div class="section" id="airi">
     <h2>MIT AI Risk Initiative</h2>
-    <p>I direct the MIT AI Risk Initiative (AIRI), a research project at MIT FutureTech that provides authoritative data and frameworks to help decision-makers across the AI ecosystem identify, prioritise, and manage the most important risks from AI.</p>
-
-    <Image
-      src={airiSpeaking}
-      alt="Alexander K Saeri speaking at the EA Global conference, November 2025"
-      class="header-banner"
-      widths={[600, 1000, 1600]}
-      sizes="(max-width: 850px) 100vw, 800px"
-    />
+    <p>I direct the AI Risk Initiative at MIT FutureTech. The Initiative is a research project that provides authoritative data and frameworks to help decision-makers across the AI ecosystem identify, prioritise, and manage the most important risks from AI.</p>
 
     <ul class="workstreams">
       <li>
         <div class="workstream-name">AI Risk Repository</div>
         <p class="workstream-q">What are the risks from AI? Which are highest priority?</p>
-        <p class="workstream-a">A common taxonomy and database synthesising over 1,700 risks from 74 frameworks, used by governments, standards bodies, and AI labs.</p>
+        <p class="workstream-a">A common taxonomy and database synthesising over 1,700 risks from 74 frameworks, used by governments, standards bodies, and AI companies.</p>
       </li>
       <li>
         <div class="workstream-name">AI Risk Index</div>
         <p class="workstream-q">How are leading organisations responding to AI risks?</p>
-        <p class="workstream-a">An expert prioritisation of risks and an assessment of how key actors across the ecosystem are managing them.</p>
+        <p class="workstream-a">Global expert prioritisation of risks and an assessment of how key actors across the ecosystem are managing them.</p>
       </li>
       <li>
         <div class="workstream-name">AI Mitigations Repository</div>
         <p class="workstream-q">What are the mitigations for AI risks? Which are most effective?</p>
-        <p class="workstream-a">A structured database of mitigation strategies extracted from frameworks across technical, policy, and governance domains.</p>
+        <p class="workstream-a">A database of AI risk mitigations extracted from research, policy, and governance frameworks.</p>
       </li>
       <li>
         <div class="workstream-name">AI Incident Tracking</div>
         <p class="workstream-q">Which real-world harms from AI are already occurring?</p>
-        <p class="workstream-a">A collaboration with the AI Incident Database to monitor and analyse documented incidents.</p>
+        <p class="workstream-a">A collaboration with the <a href="https://incidentdatabase.ai/">AI Incident Database</a> to monitor and analyse documented incidents of AI harm, and estimate their reach and severity.</p>
       </li>
       <li>
         <div class="workstream-name">AI Governance Mapping</div>
         <p class="workstream-q">Which laws and governance approaches cover which risks?</p>
-        <p class="workstream-a">A collaboration with the Center for Security and Emerging Technology (CSET) at Georgetown to systematically map governance documents against risk and mitigation taxonomies.</p>
+        <p class="workstream-a">A collaboration with the Center for Security and Emerging Technology (CSET) to systematically map governance documents from the <a href="https://agora.eto.tech/">AGORA database</a> against risk and mitigation taxonomies.</p>
       </li>
     </ul>
 
-    <h3>Impact</h3>
-    <p>AIRI's work is widely used and cited. Since launch in 2024, the website has had 250,000+ visits and 180+ academic citations. It is referenced in the <em>International AI Safety Report 2025</em> and Canada's <em>Implementation Guide for Managers of AI Systems</em>, and has been adopted by IBM, Credo AI, the Vector Institute, and the AI Incident Database. The 2024 Repository paper received the most media coverage of any research released by MIT CSAIL across 2024 and 2025.</p>
-
-    <blockquote class="pullquote">
-      <p>"The MIT AI Risk Repository is a valuable database for accessing current and comprehensive information on a wide range of AI-related risks. This resource helps fill a critical information gap by bringing more rigor and transparency to AI risk management."</p>
-      <footer>Yoshua Bengio, Turing Award winner, Université de Montréal, Founder and Scientific Advisor of Mila</footer>
-    </blockquote>
   </div>
 
   <div class="section" id="ecosystem">
     <h2>Australia's AI safety ecosystem</h2>
-    <p>Alongside AIRI, I help build Australia's AI safety ecosystem. I collaborate with <a href="https://www.goodancestors.org.au/safe-and-responsible-ai">Good Ancestors Policy</a> on policy analysis and submissions, convene the <a href="https://aisafety.org.au/project/melbourne/">Melbourne AI safety community</a>, designed and facilitated the inaugural <a href="https://aisafetyforum.au/">Australian AI Safety Forum (2024)</a>, and help maintain <a href="https://aisafety.org.au/">AISafety.org.au</a>.</p>
+    <p>Alongside AIRI, I help build Australia's AI safety ecosystem. I advise <a href="https://www.goodancestors.org.au/">Good Ancestors</a> on AI risk and mentor researchers and fellows in the community. I co-founded the Melbourne AI Safety Hub coworking space, and convened the AI Safety Unconferences (2023 and 2025) and the inaugural <a href="https://aisafetyforum.au/">Australian AI Safety Forum (2024)</a>.</p>
   </div>
 
   <div class="section" id="publications">
@@ -98,7 +77,8 @@ import airiSpeaking from '../assets/headers/airi-speaking.jpg';
 
     <h3>Recent</h3>
     <ul class="publications">
-      <li>Slattery, P., <strong>Saeri, A. K.</strong>, Grundy, E. A. C., Graham, J., Noetel, M., Uuk, R., Dao, J., Pour, S., Caspar, S., &amp; Thompson, N. (2024). <em>The AI Risk Repository: A Comprehensive Meta-Review, Database, and Taxonomy of Risks From Artificial Intelligence.</em> arXiv:2408.12622. <a href="https://doi.org/10.48550/arXiv.2408.12622">doi.org/10.48550/arXiv.2408.12622</a></li>
+      <li><strong>Saeri, A. K.</strong>, Lloyd George, S., Graham, J., Lacarriere, C. D., Slattery, P., Noetel, M., &amp; Thompson, N. (2025). <em>Mapping AI Risk Mitigations: Evidence Scan and Preliminary AI Risk Mitigation Taxonomy.</em> arXiv:2512.11931. <a href="https://doi.org/10.48550/arXiv.2512.11931">doi.org/10.48550/arXiv.2512.11931</a></li>
+      <li>Slattery, P., <strong>Saeri, A. K.</strong>, Grundy, E. A. C., Graham, J., Noetel, M., Uuk, R., Dao, J., Pour, S., Casper, S., &amp; Thompson, N. (2026). <em>The AI Risk Repository: A meta-review, database, and taxonomy of risks from artificial intelligence.</em> Patterns, 7(5), 101517. <a href="https://doi.org/10.1016/j.patter.2026.101517">doi.org/10.1016/j.patter.2026.101517</a></li>
       <li><strong>Saeri, A. K.</strong>, Noetel, M., &amp; Graham, J. (2024). <em>Survey Assessing Risks from Artificial Intelligence: Technical Report.</em> UQ / Ready Research. <a href="https://doi.org/10.2139/ssrn.4750953">doi.org/10.2139/ssrn.4750953</a></li>
       <li><strong>Saeri, A. K.</strong>, &amp; O'Connor, R. M. A. (2023). <em>Applying AI to sustainability policy challenges: A practical playbook.</em> Monash University. <a href="https://doi.org/10.31219/osf.io/y75rq">doi.org/10.31219/osf.io/y75rq</a></li>
     </ul>
@@ -113,13 +93,10 @@ import airiSpeaking from '../assets/headers/airi-speaking.jpg';
 
   <div class="section" id="contact">
     <h2>Contact</h2>
-    <p>I'm available for advising and speaking on AI governance, risk management, and research-to-policy translation. Get in touch if you'd like to discuss collaboration, a briefing, or an engagement.</p>
-    <p>
-      <strong>Email:</strong> <a href="mailto:alexander@aksaeri.com">alexander@aksaeri.com</a><br>
-      <strong>Phone:</strong> <a href="tel:+61405519733">+61 405 519 733</a>
-    </p>
+    <p>Please contact me to discuss potential collaborations, briefings, or engagements.</p>
+    <p><strong>Email:</strong> <a href="mailto:alexander@aksaeri.com">alexander@aksaeri.com</a></p>
     <div class="cta-row">
-      <a href="https://calendar.app.google/sv3Sb5sjUxxTdssv8" class="btn">Schedule a meeting</a>
+      <a href="https://calendar.app.google/sv3Sb5sjUxxTdssv8" class="btn">Request a meeting</a>
     </div>
   </div>
 </BaseLayout>
