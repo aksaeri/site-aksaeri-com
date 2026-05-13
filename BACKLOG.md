@@ -16,5 +16,5 @@ To restore an image:
 
 ## Other open items
 
-- Open PR #4 (`claude/migrate-astro-vercel-Tvipg`) is stale — adds `.astro/` to `.gitignore` plus a one-time `MIGRATION-COMPLETE.md`. Can be closed; the gitignore entry can be added directly to `main` if wanted.
-- Three remote `claude/*` branches are leftover from the migration PRs and can be deleted.
+- Content updates from the LinkedIn brainstorm (`~/inbox/website_briefing.md`) are still to be applied.
+- After content lands, push the local `main` commit (`105c87e`) to trigger the Vercel rebuild.
