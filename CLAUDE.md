@@ -102,7 +102,7 @@ The Vercel project is `site-aksaeri-com.vercel.app`; the primary domain `aksaeri
 - Images use `<Image>` from `astro:assets` with files imported from `src/assets/`.
 - One content page (`index.astro`) plus `404.astro`. Any new page is a new file under `src/pages/`.
 - Accessibility target is WCAG 2.2 AA. Teal text, links and buttons use `--color-accent-text` (`#127788`), not brand teal `#17879B`, which fails 4.5:1 on the off-white background. Links in `main` are underlined.
-- `og.png` is a plain brand card (name, headline, title). If the headline or title changes, edit `scripts/og-card.html` and re-render it to `public/og.png` at 1200x630.
+- `og.png` is a plain brand card (name, headline, domain; no role line). All text stays inside the centre 630x630 square (x 285-915) so square crops keep it. If the headline or title changes, edit `scripts/og-card.html` and re-render it to `public/og.png` at 1200x630.
 
 ## Things to Avoid
 
