@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.aksaeri.com',
+  site: 'https://aksaeri.com',
   integrations: [mdx(), sitemap()],
   output: 'static',
 });

@@ -1,0 +1,39 @@
+# Alexander K Saeri
+
+> Alexander K Saeri directs the MIT AI Risk Initiative at MIT FutureTech. He conducts and communicates research to help govern highly capable general-purpose AI, and holds positions at MIT FutureTech and The University of Queensland. He is based in Melbourne, Australia.
+
+His methods background is in social psychology, applied behaviour science, implementation science, evidence synthesis, systems thinking, and survey research. Alongside the MIT AI Risk Initiative, he helps build Australia's AI safety ecosystem: he advises Good Ancestors on AI risk, co-founded the Melbourne AI Safety Hub coworking space, convened the AI Safety Unconferences (2023 and 2025), and designed and facilitated the inaugural Australian AI Safety Forum (2024).
+
+## Profile
+
+- [aksaeri.com](https://aksaeri.com/): personal site with a short bio, the AI Risk Initiative workstreams, and selected publications
+- [CV](https://aksaeri.com/cv): academic CV (Google Doc)
+- [Google Scholar](https://scholar.google.com.au/citations?user=B_bJG3kAAAAJ): full list of publications
+- [ORCID](https://orcid.org/0000-0001-9254-0300)
+- [LinkedIn](https://www.linkedin.com/in/aksaeri)
+- [GitHub](https://github.com/aksaeri)
+- [AI tools](https://tools.aksaeri.com/): Claude skills he has found helpful, cleaned up so others can install or build them
+
+## MIT AI Risk Initiative
+
+- [airisk.mit.edu](https://airisk.mit.edu/): the Initiative's home
+- [AI Risk Repository](https://airisk.mit.edu/risks): a common taxonomy and database of over 1,700 risks from 74 frameworks
+- [AI Risk Index](https://airisk.mit.edu/priorities): global expert prioritisation of risks and how key actors are managing them
+- [AI Mitigation Repository](https://airisk.mit.edu/ai-risk-mitigations): AI risk mitigations extracted from research, policy, and governance frameworks
+- [AI Incident Tracker](https://airisk.mit.edu/ai-incident-tracker): documented incidents of AI harm, with the AI Incident Database
+- [AI Governance Mapping](https://airisk.mit.edu/ai-governance): governance documents mapped against risk and mitigation taxonomies, with CSET
+- AI Foresight Survey: structured expert elicitation on emerging AI exposure, risks, and mitigations across sectors
+
+## Selected publications
+
+- [Prioritization of Risks from Artificial Intelligence: A Delphi Study of 272 International Experts](https://doi.org/10.48550/arXiv.2606.04490) (2026, arXiv; first author)
+- [The AI Risk Repository: A meta-review, database, and taxonomy of risks from artificial intelligence](https://doi.org/10.1016/j.patter.2026.101517) (2026, Patterns)
+- [Affordance Analyses of AI Safety Policies: A Proof-of-Concept using OpenAI's Preparedness Framework](https://doi.org/10.1145/3805689.3812331) (2026, ACM FAccT)
+- [Mapping AI Risk Mitigations: Evidence Scan and Preliminary AI Risk Mitigation Taxonomy](https://doi.org/10.48550/arXiv.2512.11931) (2025, arXiv; first author)
+- [Strategic insights from simulation gaming of AI race dynamics](https://doi.org/10.1016/j.futures.2025.103563) (2025, Futures)
+- [Survey Assessing Risks from Artificial Intelligence: Technical Report](https://doi.org/10.2139/ssrn.4750953) (2024; first author), followed by the [2025 Technical Report](https://aigovernance.org.au/survey/2025/)
+
+## Contact
+
+- Email: alexander@aksaeri.com
+- [Request a meeting](https://aksaeri.com/meet)

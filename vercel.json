@@ -26,7 +26,62 @@
     },
     {
       "source": "/cv",
-      "destination": "https://docs.google.com/document/d/1h9amaSB6MOZ1lSANBEhf1SOaMfQg4Y2_12wK3l-CrT4/edit",
+      "destination": "https://docs.google.com/document/d/1gFzs19rKbZ0QyBxlqyPEElTojDjMm3LwvJx7Ah-D3H0/edit",
+      "permanent": true
+    },
+    {
+      "source": "/project/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/publication/:path*",
+      "destination": "/#publications",
+      "permanent": true
+    },
+    {
+      "source": "/post/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/event/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/authors/:path*",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/other_projects",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/other-projects",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
       "permanent": true
     }
   ]

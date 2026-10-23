@@ -8,30 +8,29 @@
 **DNS:** Cloudflare proxied → Vercel
 **Purpose:** Personal academic site for Alexander K. Saeri — AI governance, behavioural science, AI safety research.
 
-The site was migrated from Hugo/Wowchemy to Astro in November 2025 (PRs #1–#3). The previous Hugo build is preserved in `hugo-backup/` for reference.
+The site was migrated from Hugo/Wowchemy to Astro in November 2025 (PRs #1–#3). The old Hugo build was removed in October 2026 and is in git history if ever needed. Old Hugo URLs (`/project/*`, `/publication/*`, etc.) redirect to the home page via `vercel.json`.
 
 ## Repository Structure
 
 ```
 site-aksaeri-com/
 ├── astro.config.mjs       # Astro config (site URL, integrations)
-├── vercel.json            # Vercel framework + URL redirects
+├── vercel.json            # Vercel framework + URL redirects (incl. old Hugo URLs)
 ├── package.json           # Astro 5, @astrojs/mdx, @astrojs/sitemap
 ├── src/
-│   ├── assets/                  # Optimised images (imported into pages)
-│   │   ├── avatar.jpg
-│   │   ├── og-preview.png
-│   │   └── projects/            # Per-project images
+│   ├── assets/headers/hero.jpg  # Hero photo (imported into index.astro)
 │   ├── layouts/
-│   │   └── BaseLayout.astro     # Shared <head>, nav, footer, global CSS
-│   └── pages/
-│       ├── index.astro          # Home (/)
-│       └── other-projects.astro # /other-projects
+│   │   └── BaseLayout.astro     # Shared <head> (OG tags, canonical, Person JSON-LD), sidebar, global CSS
+│   ├── pages/
+│   │   ├── index.astro          # Home (/)
+│   │   └── 404.astro            # Not-found page (noindex)
+│   └── styles/brand.css         # Copy of the aks-brand tokens
 ├── public/                # Static assets served as-is at literal path
-│   ├── favicon.ico              # → /favicon.ico
-│   └── uploads/                 # Static files (e.g. resume.pdf)
-├── BACKLOG.md             # Tracked TODOs (e.g. image replacements)
-└── hugo-backup/           # Archived Hugo site (do not edit)
+│   ├── favicon.ico / favicon.svg
+│   ├── og.png                   # 1200x630 link-preview card
+│   ├── robots.txt               # Points crawlers at the sitemap
+│   └── llms.txt                 # Plain-text summary for AI tools
+└── BACKLOG.md             # Tracked TODOs
 ```
 
 ## Tech Stack
@@ -71,7 +70,7 @@ npm run preview    # Serve the built site locally
 | `src/assets/foo.png` | Content images. Imported into a page/component and rendered with `<Image>` from `astro:assets`. Astro resizes, format-converts, hashes, and lazy-loads them. **Default.** | Hashed URL generated at build time. |
 | `public/foo.png` | Files that must live at a fixed URL — `favicon.ico`, `robots.txt`, PDF downloads, OG images referenced from external services. | `/foo.png` (literal). |
 
-The site currently uses `src/assets/` for content images and `public/` only for `favicon.ico` and `uploads/resume.pdf`.
+The site currently uses `src/assets/` for the hero photo and `public/` for favicons, `og.png`, `robots.txt` and `llms.txt`.
 
 ### Adding an image
 
@@ -97,15 +96,16 @@ The Vercel project is `site-aksaeri-com.vercel.app`; the primary domain `aksaeri
 
 ## Conventions
 
-- Internal links use absolute paths: `<a href="/other-projects">`.
+- Internal links use absolute paths: `<a href="/#about">`.
 - Hash anchors target IDs on the page: `<a href="#contact">` → element with `id="contact"`.
 - External links open in the same tab unless there's a reason otherwise.
 - Images use `<Image>` from `astro:assets` with files imported from `src/assets/`.
-- Two pages exist (`index.astro`, `other-projects.astro`). Any new page is a new file under `src/pages/`.
+- One content page (`index.astro`) plus `404.astro`. Any new page is a new file under `src/pages/`.
+- Accessibility target is WCAG 2.2 AA. Teal text, links and buttons use `--color-accent-text` (`#127788`), not brand teal `#17879B`, which fails 4.5:1 on the off-white background. Links in `main` are underlined.
+- `og.png` is a plain brand card (name, headline, title). If the headline or title changes, edit `scripts/og-card.html` and re-render it to `public/og.png` at 1200x630.
 
 ## Things to Avoid
 
-- Editing `hugo-backup/` — it's an archive, not a live site.
 - Hardcoding the absolute domain in links — use relative paths so previews work.
 - Adding a CSS framework without first deciding it's worth the complexity; the current site is intentionally lightweight.
 
