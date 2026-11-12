@@ -27,8 +27,8 @@
     },
     {
       "source": "/cv",
-      "destination": "https://docs.google.com/document/d/1gFzs19rKbZ0QyBxlqyPEElTojDjMm3LwvJx7Ah-D3H0/edit",
-      "permanent": true
+      "destination": "https://docs.google.com/document/d/1SuQ1y6gtcXq5V74ogfOj3t2z09td9FQnJ4iytVW5f-k/edit",
+      "permanent": false
     },
     {
       "source": "/project/:path*",
