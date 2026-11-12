@@ -27,11 +27,11 @@ His methods background is in social psychology, applied behaviour science, imple
 ## Selected publications
 
 - [Unmitigated? How are the world's largest companies responding to AI risks?](https://doi.org/10.48550/arXiv.2611.04278) (2026, arXiv; first author)
+- [The AI Risk Mitigation Repository: A systematic review and multi-taxonomy framework of mitigations across AI systems, organizations, and ecosystems](https://airisk.mit.edu/mitigations) (2026, MIT AI Risk Initiative; joint first author)
 - [Assessing Company Contributions to Societal Resilience: Extending the Societal Capacity Assessment Framework to Agentic AI](https://doi.org/10.48550/arXiv.2608.27238) (2026, arXiv)
 - [Prioritization of Risks from Artificial Intelligence: A Delphi Study of 272 International Experts](https://doi.org/10.48550/arXiv.2606.04490) (2026, arXiv; first author)
 - [The AI Risk Repository: A meta-review, database, and taxonomy of risks from artificial intelligence](https://doi.org/10.1016/j.patter.2026.101517) (2026, Patterns)
 - [Affordance Analyses of AI Safety Policies: A Proof-of-Concept using OpenAI's Preparedness Framework](https://doi.org/10.1145/3805689.3812331) (2026, ACM FAccT)
-- [Mapping AI Risk Mitigations: Evidence Scan and Preliminary AI Risk Mitigation Taxonomy](https://doi.org/10.48550/arXiv.2512.11931) (2025, arXiv; first author)
 - [Strategic insights from simulation gaming of AI race dynamics](https://doi.org/10.1016/j.futures.2025.103563) (2025, Futures)
 - [Survey Assessing Risks from Artificial Intelligence: Technical Report](https://doi.org/10.2139/ssrn.4750953) (2024; first author), followed by the [2025 Technical Report](https://aigovernance.org.au/survey/2025/)
 
