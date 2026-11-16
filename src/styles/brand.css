@@ -17,12 +17,32 @@
   /* Derived colors: use these for consistent interactive states */
   --color-primary-hover: #0F5C6B;
   --color-primary-light-hover: #4798A8;
-  --color-link: var(--color-primary);
+  /* Teal for text: primary (#17879B) is 4.0:1 on background, below the 4.5:1
+     WCAG AA needs for body-size text. Use accent-text for teal words, links
+     and button fills; keep primary for large headings, rules and shapes. */
+  --color-accent-text: #127788;
+  --color-link: var(--color-accent-text);
   --color-link-hover: var(--color-primary-dark);
   --color-text: var(--color-dark);
   --color-text-muted: var(--color-gray);
   --color-border: #E0E0E0;
   --color-border-strong: var(--color-gray);
+
+  /* Semantic roles: these are what dark mode swaps. Prefer them in new work. */
+  --color-surface: var(--color-white);
+  --color-accent: var(--color-primary);
+  --color-accent-strong: var(--color-primary-dark);
+  --color-accent-tint: rgba(23, 135, 155, 0.08);
+  --color-on-accent: #FFFFFF;
+
+  /* Status scale: always pair with a shape and a text label (BRAND.md) */
+  --color-status-law: #0F5C6B;
+  --color-status-announced: #17879B;
+  --color-status-proposed: #4798A8;
+  --color-status-gap: #6B6B6B;
+  --color-status-planned: #6B6B6B;
+
+  color-scheme: light;
 
   /* Typography */
   --font-family: 'Inter', sans-serif;
@@ -56,4 +76,53 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-full: 9999px;
+}
+
+/* Dark mode. Follows the system setting unless the page sets
+   data-theme="light" or data-theme="dark" on <html> (see theme-toggle.js).
+   Brand hexes (--color-primary etc.) never change; the semantic roles do. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-background: #121416;
+    --color-surface: #1B1F22;
+    --color-text: #ECECE8;
+    --color-text-muted: #A2A29E;
+    --color-border: #2E3337;
+    --color-border-strong: #A2A29E;
+    --color-accent: #5FAFBE;
+    --color-accent-text: #5FAFBE;
+    --color-accent-strong: #8CC6D1;
+    --color-accent-tint: rgba(95, 175, 190, 0.12);
+    --color-on-accent: #121416;
+    --color-link: #5FAFBE;
+    --color-link-hover: #8CC6D1;
+    --color-status-law: #8CC6D1;
+    --color-status-announced: #5FAFBE;
+    --color-status-proposed: #3E7F8B;
+    --color-status-gap: #A2A29E;
+    --color-status-planned: #A2A29E;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-background: #121416;
+  --color-surface: #1B1F22;
+  --color-text: #ECECE8;
+  --color-text-muted: #A2A29E;
+  --color-border: #2E3337;
+  --color-border-strong: #A2A29E;
+  --color-accent: #5FAFBE;
+  --color-accent-text: #5FAFBE;
+  --color-accent-strong: #8CC6D1;
+  --color-accent-tint: rgba(95, 175, 190, 0.12);
+  --color-on-accent: #121416;
+  --color-link: #5FAFBE;
+  --color-link-hover: #8CC6D1;
+  --color-status-law: #8CC6D1;
+  --color-status-announced: #5FAFBE;
+  --color-status-proposed: #3E7F8B;
+  --color-status-gap: #A2A29E;
+  --color-status-planned: #A2A29E;
+  color-scheme: dark;
 }

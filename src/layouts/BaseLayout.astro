@@ -94,30 +94,13 @@ const person = {
        #127788 is 5.0:1 (5.2:1 under white button text). */
 
     :root {
-      --color-accent-text: #127788;
-      --color-link: var(--color-accent-text);
       --color-button: var(--color-accent-text);
-      --color-button-hover: var(--color-primary-dark);
-      --color-button-text: #FFFFFF;
+      --color-button-hover: var(--color-accent-strong);
+      --color-button-text: var(--color-on-accent);
     }
 
-    /* Dark mode overrides (extends brand.css tokens) */
-
-    :root[data-theme="dark"] {
-      --color-background: #161616;
-      --color-text: #EAEAEA;
-      --color-text-muted: #A6A6A6;
-      --color-border: #2A2A2A;
-      --color-border-strong: #444444;
-      --color-white: #1F1F1F;
-      --color-primary-dark: #2BA0B8;
-      --color-accent-text: #5FAFBE;
-      --color-link: #5FAFBE;
-      --color-link-hover: #80CAD9;
-      --color-button: #5FAFBE;
-      --color-button-hover: #80CAD9;
-      --color-button-text: #161616;
-    }
+    /* Dark mode comes from brand.css (aks-brand): it swaps the role tokens
+       when <html data-theme="dark">, which the theme script below sets. */
 
     body {
       font-family: var(--font-family);
